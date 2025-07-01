@@ -1,0 +1,110 @@
+/* Rosas flotantes animadas */
+#falling-roses-container {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+}
+.falling-rose {
+    position: absolute;
+    top: -60px;
+    animation: fall-rose var(--fall-duration, 2.8s) linear forwards;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 4px 12px rgba(80,0,0,0.18));
+    user-select: none;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    /* Variables para trayectoria y rotación */
+    --rose-drift: 0vw;
+    --rose-rotate-start: 0deg;
+    --rose-rotate-end: 0deg;
+}
+@keyframes fall-rose {
+    0% {
+        transform: translateY(0) translateX(0) rotate(var(--rose-rotate-start)) scale(1);
+        opacity: 0.7;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) translateX(var(--rose-drift)) rotate(var(--rose-rotate-end)) scale(1.1);
+        opacity: 0;
+    }
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background: linear-gradient(135deg, var(--cream-bg) 0%, var(--soft-pink) 50%, var(--light-gold) 100%);
+    min-height: 100vh;
+    line-height: 1.6;
+    color: var(--deep-burgundy);
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Tipografía base */
+.fairy-tale-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--primary-gold);
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+    margin-bottom: var(--spacing-sm);
+    animation: sparkle 4s ease-in-out infinite alternate;
+}
+
+.subtitle {
+    font-family: var(--font-elegant);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--enchanted-blue);
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.celebrant-name {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5rem);
+    color: var(--primary-gold);
+    margin-bottom: var(--spacing-xs);
+    
+    text-shadow: 2px 2px 8px rgb(25, 43, 77), 0 2px 8px #c2bebe;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.celebrant-surname {
+    font-family: var(--font-elegant);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--royal-purple);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.age-text {
+    font-family: var(--font-classic);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    margin-bottom: var(--spacing-xl);
+    color: var(--enchanted-blue);
+    text-align: center;
+}
+
+.number-highlight {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--primary-gold);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    display: inline-block;
+    animation: pulse 2s ease-in-out infinite;
+}

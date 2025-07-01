@@ -1,0 +1,125 @@
+@keyframes sparkle {
+    0% { 
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        transform: scale(1);
+    }
+    100% { 
+        text-shadow: 3px 3px 12px var(--shadow-color), 0 0 20px var(--light-gold);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes wiggle {
+    0%, 7% {
+        transform: rotateZ(0);
+    }
+    15% {
+        transform: rotateZ(-15deg);
+    }
+    20% {
+        transform: rotateZ(10deg);
+    }
+    25% {
+        transform: rotateZ(-10deg);
+    }
+    30% {
+        transform: rotateZ(6deg);
+    }
+    35% {
+        transform: rotateZ(-4deg);
+    }
+    40%, 100% {
+        transform: rotateZ(0);
+    }
+}
+
+@keyframes twinkle {
+    0%, 50%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    25%, 75% {
+        opacity: 0.5;
+        transform: scale(0.9);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 60%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    80% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Utilidades de animación */
+.fairy-tale-title {
+    animation: sparkle 4s ease-in-out infinite alternate;
+}
+.crown-divider {
+    animation: float 3s ease-in-out infinite;
+}
+.number-highlight {
+    animation: pulse 2s ease-in-out infinite;
+}
+.character-response {
+    animation: bounceIn 1s ease-out;
+}
+.character-img {
+    animation: wiggle 3s ease-in-out infinite;
+}
+.sparkles {
+    animation: twinkle 2s linear infinite;
+}
+.detail-item:hover .detail-icon {
+    animation: bounce 0.6s ease;
+}
+.main-content > * {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+.main-content > *:nth-child(1) { animation-delay: 0.1s; }
+.main-content > *:nth-child(2) { animation-delay: 0.2s; }
+.main-content > *:nth-child(3) { animation-delay: 0.3s; }
+.main-content > *:nth-child(4) { animation-delay: 0.4s; }
+.main-content > *:nth-child(5) { animation-delay: 0.5s; }
+.main-content > *:nth-child(6) { animation-delay: 0.6s; }

@@ -1,0 +1,81 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="teacupGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#f8f8f8;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#e8e8e8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d0d0d0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f4e7b8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#d4af37;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b8941f;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  
+  <!-- Plato base -->
+  <ellipse cx="60" cy="100" rx="45" ry="8" fill="#e0e0e0" opacity="0.5"/>
+  
+  <!-- Cuerpo principal de la taza -->
+  <g filter="url(#shadow)">
+    <!-- Base de la taza -->
+    <path d="M25,85 Q25,95 35,95 L85,95 Q95,95 95,85 L95,40 Q95,25 80,25 L40,25 Q25,25 25,40 Z" 
+          fill="url(#teacupGradient)" stroke="url(#goldRim)" stroke-width="2"/>
+    
+    <!-- Borde dorado superior -->
+    <ellipse cx="60" cy="30" rx="35" ry="5" fill="url(#goldRim)"/>
+    
+    <!-- Asa de la taza -->
+    <path d="M95,45 Q110,45 110,60 Q110,75 95,75" 
+          fill="none" stroke="url(#goldRim)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M95,47 Q107,47 107,60 Q107,73 95,73" 
+          fill="none" stroke="url(#teacupGradient)" stroke-width="2"/>
+  </g>
+  
+  <!-- Chip brillante en el borde -->
+  <ellipse cx="75" cy="32" rx="3" ry="2" fill="#ffffff" opacity="0.8"/>
+  
+  <!-- Cara feliz de Chip -->
+  <g transform="translate(60,55)">
+    <!-- Ojos grandes y brillantes -->
+    <circle cx="-12" cy="-8" r="6" fill="#2c3e50"/>
+    <circle cx="12" cy="-8" r="6" fill="#2c3e50"/>
+    <!-- Brillo en los ojos -->
+    <circle cx="-10" cy="-10" r="2" fill="#ffffff"/>
+    <circle cx="14" cy="-10" r="2" fill="#ffffff"/>
+    
+    <!-- Sonrisa amplia -->
+    <path d="M-15,5 Q0,20 15,5" fill="none" stroke="#722f37" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Mejillas sonrosadas -->
+    <circle cx="-20" cy="2" r="4" fill="#ff9999" opacity="0.6"/>
+    <circle cx="20" cy="2" r="4" fill="#ff9999" opacity="0.6"/>
+    
+    <!-- Cejas expresivas -->
+    <path d="M-18,-15 Q-12,-18 -6,-15" fill="none" stroke="#2c3e50" stroke-width="2" stroke-linecap="round"/>
+    <path d="M6,-15 Q12,-18 18,-15" fill="none" stroke="#2c3e50" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Detalles decorativos en la taza -->
+  <g opacity="0.3">
+    <circle cx="45" cy="50" r="2" fill="#d4af37"/>
+    <circle cx="75" cy="65" r="1.5" fill="#d4af37"/>
+    <circle cx="50" cy="75" r="1" fill="#d4af37"/>
+  </g>
+  
+  <!-- Vapor feliz saliendo de la taza -->
+  <g opacity="0.4">
+    <path d="M50,25 Q52,15 50,10 Q48,5 50,0" fill="none" stroke="#b0b0b0" stroke-width="2" stroke-linecap="round">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M60,20 Q62,10 60,5 Q58,0 60,-5" fill="none" stroke="#b0b0b0" stroke-width="2" stroke-linecap="round">
+      <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2.5s" repeatCount="indefinite"/>
+    </path>
+    <path d="M70,25 Q72,15 70,10 Q68,5 70,0" fill="none" stroke="#b0b0b0" stroke-width="2" stroke-linecap="round">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+    </path>
+  </g>
+</svg>

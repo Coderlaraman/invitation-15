@@ -1,0 +1,40 @@
+<svg width="400" height="80" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f4e7b8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#d4af37;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b8941f;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="ornatePattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="3" fill="#b8941f" opacity="0.3"/>
+      <path d="M15,20 Q20,15 25,20 Q20,25 15,20" fill="#f4e7b8" opacity="0.5"/>
+    </pattern>
+  </defs>
+  
+  <!-- Fondo base -->
+  <rect width="400" height="80" fill="url(#goldGradient)"/>
+  
+  <!-- Patrón ornamental -->
+  <rect width="400" height="80" fill="url(#ornatePattern)"/>
+  
+  <!-- Detalles decorativos superiores -->
+  <path d="M0,10 Q50,0 100,10 T200,10 T300,10 T400,10 L400,0 L0,0 Z" fill="#b8941f" opacity="0.6"/>
+  
+  <!-- Detalles decorativos inferiores -->
+  <path d="M0,70 Q50,80 100,70 T200,70 T300,70 T400,70 L400,80 L0,80 Z" fill="#b8941f" opacity="0.6"/>
+  
+  <!-- Elementos florales decorativos -->
+  <g opacity="0.7">
+    <circle cx="50" cy="40" r="8" fill="#f4e7b8"/>
+    <path d="M45,40 Q50,35 55,40 Q50,45 45,40" fill="#d4af37"/>
+    
+    <circle cx="150" cy="25" r="6" fill="#f4e7b8"/>
+    <path d="M147,25 Q150,22 153,25 Q150,28 147,25" fill="#d4af37"/>
+    
+    <circle cx="250" cy="55" r="7" fill="#f4e7b8"/>
+    <path d="M246,55 Q250,51 254,55 Q250,59 246,55" fill="#d4af37"/>
+    
+    <circle cx="350" cy="35" r="9" fill="#f4e7b8"/>
+    <path d="M344,35 Q350,29 356,35 Q350,41 344,35" fill="#d4af37"/>
+  </g>
+</svg>

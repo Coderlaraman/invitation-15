@@ -1,0 +1,132 @@
+@media (max-width: 900px) {
+  .cover-header {
+    max-width: 100vw;
+    min-height: 120px;
+  }
+  .cover-header img {
+    min-height: 120px;
+    max-height: 200px;
+  }
+  .side-character {
+    width: 120px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cover-header {
+    min-height: 80px;
+    border-radius: 0 0 18px 18px;
+  }
+  .cover-header img {
+    min-height: 80px;
+    max-height: 120px;
+  }
+  .side-character {
+    width: 70px;
+    opacity: 0.35;
+  }
+}
+
+@media (max-width: 768px) {
+    .corner-frame {
+        width: 100px;
+        height: 100px;
+    }
+    .corner-frame.top-left,
+    .corner-frame.top-right {
+        top: 10px;
+    }
+    .corner-frame.top-left,
+    .corner-frame.bottom-left {
+        left: 10px;
+    }
+    .corner-frame.top-right,
+    .corner-frame.bottom-right {
+        right: 10px;
+    }
+    .corner-frame.bottom-left,
+    .corner-frame.bottom-right {
+        bottom: 10px;
+    }
+    .corner-letter {
+        font-size: 2.5rem;
+    }
+    .side-character {
+        width: 80px;
+        opacity: 0.2;
+    }
+    .main-content {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    .photo-carousel {
+        max-width: 300px;
+        height: 300px;
+    }
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    .prev-btn {
+        left: 10px;
+    }
+    .next-btn {
+        right: 10px;
+    }
+    .event-details {
+        padding: var(--spacing-lg);
+    }
+    .theme-description {
+        padding: var(--spacing-lg);
+    }
+    .response-buttons {
+        gap: var(--spacing-md);
+    }
+    .response-btn {
+        padding: var(--spacing-md) var(--spacing-lg);
+        min-height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .corner-frame {
+        width: 80px;
+        height: 80px;
+    }
+    .corner-letter {
+        font-size: 2rem;
+    }
+    .side-character {
+        width: 60px;
+        opacity: 0.15;
+    }
+    .main-content {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    .frame-border.top-border,
+    .frame-border.bottom-border {
+        height: 10px;
+    }
+    .frame-border.left-border,
+    .frame-border.right-border {
+        width: 10px;
+    }
+    .photo-carousel {
+        max-width: 280px;
+        height: 280px;
+    }
+    .event-details {
+        padding: var(--spacing-md);
+    }
+    .theme-description {
+        padding: var(--spacing-md);
+    }
+    .detail-item {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+    .detail-content {
+        text-align: center;
+    }
+}

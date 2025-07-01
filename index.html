@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitación XV Años - Karoline Zamara Vélez Sierra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400&family=Playfair+Display:wght@300;400;600;700&family=Dancing+Script:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+  </head>
+  <body>
+    <!-- Animación de rosas flotantes -->
+    <div id="falling-roses-container"></div>
+    <div class="invitation-container">
+      <div class="celebrant-name" style="margin-top: 50px">Mis XV años.</div>
+      <!-- Cabecera tipo portada -->
+      <div class="cover-header">
+        <img src="assets/images/portada.png" alt="Portada Bella y Bestia" />
+        <div class="cover-title">Érase una vez...</div>
+      </div>
+
+      <!-- Imágenes laterales de los personajes -->
+      <div class="side-character left-character">
+        <img
+          src="assets/images/img19.jpg"
+          alt="Bestia"
+          class="character-side-img"
+        />
+      </div>
+
+      <div class="side-character right-character">
+        <img
+          src="assets/images/img20.jpg"
+          alt="Bella"
+          class="character-side-img"
+        />
+      </div>
+
+      <!-- Contenido principal -->
+      <div class="main-content">
+        <div class="header">
+          <button
+            class="audio-crown-btn"
+            id="audio-crown-btn"
+            aria-label="Reproducir canción"
+          >
+            <img
+              src="assets/images/melody.jpg"
+              alt="Reproducir canción"
+              class="audio-crown-img"
+            />
+          </button>
+          <p class="subtitle">
+            En un reino encantado, una princesa que estaba a punto de cumplir
+            quince años...
+          </p>
+        </div>
+
+        <audio
+          id="audio-belle"
+          src="assets/sounds/beauty-and-the-beast.mp3"
+        ></audio>
+
+        <!-- Carrusel de fotos de la quinceañera -->
+        <div class="photo-carousel-container">
+          <div class="photo-carousel">
+            <div class="carousel-track" id="carousel-track">
+              <div class="photo-slide active">
+                <img
+                  src="assets/images/Karoline1.jpg"
+                  alt="Karoline Zamara - Foto 1"
+                  class="quinceañera-photo"
+                />
+              </div>
+              <div class="photo-slide">
+                <img
+                  src="assets/images/Karoline2.png"
+                  alt="Karoline Zamara - Foto 2"
+                  class="quinceañera-photo"
+                />
+              </div>
+              <div class="photo-slide">
+                <img
+                  src="assets/images/Karoline3.jpg"
+                  alt="Karoline Zamara - Foto 3"
+                  class="quinceañera-photo"
+                />
+              </div>
+              <div class="photo-slide">
+                <img
+                  src="assets/images/img7.jpg"
+                  alt="Karoline Zamara - Foto 4"
+                  class="quinceañera-photo"
+                />
+              </div>
+            </div>
+
+            <!-- Controles del carrusel -->
+            <button
+              class="carousel-btn prev-btn"
+              id="prev-btn"
+              aria-label="Foto anterior"
+            >
+              <span class="carousel-arrow">‹</span>
+            </button>
+            <button
+              class="carousel-btn next-btn"
+              id="next-btn"
+              aria-label="Siguiente foto"
+            >
+              <span class="carousel-arrow">›</span>
+            </button>
+
+            <!-- Indicadores -->
+            <div class="carousel-indicators" id="carousel-indicators">
+              <button
+                class="indicator active"
+                data-slide="0"
+                aria-label="Ver foto 1"
+              ></button>
+              <button
+                class="indicator"
+                data-slide="1"
+                aria-label="Ver foto 2"
+              ></button>
+              <button
+                class="indicator"
+                data-slide="2"
+                aria-label="Ver foto 3"
+              ></button>
+              <button
+                class="indicator"
+                data-slide="3"
+                aria-label="Ver foto 4"
+              ></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="invitation-text">
+          <p class="subtitle" style="text-align: center">...Su nombre?</p>
+          <br />
+          <h2 class="celebrant-name">Karoline Zamara</h2>
+          <h3 class="celebrant-surname">Vélez Sierra</h3>
+          <p class="subtitle" style="text-align: center">
+            Quien, al llegar a la mágica edad de <strong>quince años</strong>,
+            soñaba con celebrar un baile real lleno de magia y encanto.
+          </p>
+
+          <div class="event-details">
+            <div class="detail-item">
+              <span class="detail-icon">📅</span>
+              <div class="detail-content">
+                <span class="detail-text">
+                  Así fue como, en las páginas de este cuento, se escribió que
+                  la gran celebración sería el día
+                  <strong class="detail-year">Sábado 4 de Octubre</strong>
+                </span>
+                <small class="detail-year">del año 2025</small>
+              </div>
+            </div>
+            <div class="detail-item">
+              <span class="detail-icon">🕘</span>
+              <div class="detail-content">
+                <span class="detail-text">
+                  Cuando el reloj marque las
+                  <strong class="detail-year">20:00 hrs</strong>, comenzará la
+                  recepción y la cena en honor a la princesa.
+                </span>
+              </div>
+            </div>
+            <div class="detail-item location-item">
+              <span class="detail-icon">📍</span>
+              <div class="detail-content">
+                <span class="detail-text">
+                  El escenario de este cuento será el majestuoso
+                  <strong class="detail-year"
+                    >Salón de Eventos "El Castillo"</strong
+                  >
+                </span>
+                <small class="detail-year">Av. Principal #123, Centro</small>
+                <button
+                  id="location-btn"
+                  class="location-btn"
+                  aria-label="Ver ubicación en Google Maps"
+                >
+                  <span class="location-icon">🗺️</span>
+                  Ver ubicación
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="theme-description">
+            <p class="theme-text">
+              Tú eres parte esencial de esta historia mágica. Ven y ayúdanos a
+              escribir un capítulo inolvidable.
+            </p>
+            <p class="dress-code">
+              <strong>Código de vestimenta:</strong> Elegante / Temático, digno
+              de un cuento de hadas.
+            </p>
+            <div class="theme-details">
+              <span class="theme-accent">✨ Baile • Cena • Diversión ✨</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de respuesta -->
+        <div class="response-buttons">
+          <button
+            id="accept-btn"
+            class="response-btn accept-btn btn-lg"
+            aria-label="Confirmar asistencia"
+          >
+            <span class="btn-icon btn-icon-lg">✨</span>
+            <span class="btn-text btn-text-lg">Asistiré al baile real</span>
+          </button>
+
+          <button
+            id="decline-btn"
+            class="response-btn decline-btn btn-lg"
+            aria-label="No poder asistir"
+          >
+            <span class="btn-icon btn-icon-lg">💔</span>
+            <span class="btn-text btn-text-lg">No podré asistir</span>
+          </button>
+        </div>
+
+        <!-- Contenedor de animación -->
+        <div id="animation-container" class="animation-container hidden">
+          <div class="character-response">
+            <img id="character-image" src="" alt="" class="character-img" />
+            <p id="response-message" class="response-message"></p>
+          </div>
+        </div>
+
+        <div class="footer-message">
+          <p class="enchanted-text">
+            "Y así, recordamos que la verdadera belleza se encuentra en el
+            corazón."
+          </p>
+          <div class="sparkles">✨ ⭐ ✨</div>
+          <p class="family-signature">Con amor, la familia Vélez Sierra</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/roses.js"></script>
+  </body>
+</html>

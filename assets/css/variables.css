@@ -1,0 +1,27 @@
+:root {
+    --primary-gold: #d4af37;
+    --light-gold: #f4e7b8;
+    --dark-gold: #b8941f;
+    --accent-gold: #e6c547;
+    --cream-bg: #faf7f0;
+    --soft-pink: #f8e8e8;
+    --deep-burgundy: #722f37;
+    --enchanted-blue: #2c3e50;
+    --royal-purple: #6b46c1;
+    --shadow-color: rgba(212, 175, 55, 0.3);
+    --shadow-dark: rgba(0, 0, 0, 0.15);
+
+    --font-display: 'Great Vibes', cursive;
+    --font-elegant: 'Dancing Script', cursive;
+    --font-body: 'Playfair Display', serif;
+    --font-classic: 'Cormorant Garamond', serif;
+
+    --border-radius: 15px;
+    --border-radius-lg: 25px;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-xxl: 4rem;
+}
