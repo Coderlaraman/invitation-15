@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#DAA520">
+    <title>Administración de Invitaciones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400&family=Playfair+Display:wght@300;400;600;700&family=Dancing+Script:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --light-gold: #f4e7b8;
+            --dark-gold: #b8941f;
+            --accent-gold: #e6c547;
+            --cream-bg: #faf7f0;
+            --soft-pink: #f8e8e8;
+            --deep-burgundy: #722f37;
+            --enchanted-blue: #2c3e50;
+            --royal-purple: #6b46c1;
+            --shadow-color: rgba(212, 175, 55, 0.3);
+            --shadow-dark: rgba(0, 0, 0, 0.15);
+
+            --font-display: 'Great Vibes', cursive;
+            --font-elegant: 'Dancing Script', cursive;
+            --font-body: 'Playfair Display', serif;
+            --font-classic: 'Cormorant Garamond', serif;
+
+            --border-radius: 15px;
+            --border-radius-lg: 25px;
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-xxl: 4rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, #FFF8DC, #F0E68C, #DAA520);
+            min-height: 100vh;
+            line-height: 1.6;
+            color: var(--deep-burgundy);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .admin-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 10px 30px var(--shadow-dark);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--light-gold), var(--primary-gold));
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--primary-gold);
+            margin-bottom: var(--spacing-lg);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            line-height: 1.2;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            color: var(--enchanted-blue);
+            font-family: var(--font-classic);
+            font-size: 1.1rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--light-gold);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            color: var(--enchanted-blue);
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 10px var(--shadow-color);
+            outline: none;
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--primary-gold), var(--dark-gold));
+            color: white;
+            padding: var(--spacing-md) var(--spacing-xl);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-family: var(--font-elegant);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0.2) 50%, 
+                rgba(255,255,255,0) 100%);
+            transition: all 0.6s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        /* Estilos para las rosas flotantes */
+        #falling-roses-container {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10000;
+        }
+        
+        .falling-rose {
+            position: absolute;
+            top: -60px;
+            animation: fall-rose var(--fall-duration, 2.8s) linear forwards;
+            will-change: transform, opacity;
+            filter: drop-shadow(0 4px 12px rgba(80,0,0,0.18));
+            user-select: none;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            /* Variables para trayectoria y rotación */
+            --rose-drift: 0vw;
+            --rose-rotate-start: 0deg;
+            --rose-rotate-end: 0deg;
+        }
+        
+        @keyframes fall-rose {
+            0% {
+                transform: translateY(0) translateX(0) rotate(var(--rose-rotate-start)) scale(1);
+                opacity: 0.7;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--rose-drift)) rotate(var(--rose-rotate-end)) scale(1.1);
+                opacity: 0;
+            }
+        }
+        
+        /* Estilos adicionales específicos para la página de administración */
+        .link-output {
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px dashed var(--primary-gold);
+            border-radius: var(--border-radius);
+            word-wrap: break-word;
+            text-align: left;
+            font-size: 0.95rem;
+            color: var(--enchanted-blue);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .output-title {
+            font-family: var(--font-elegant);
+            font-size: 1.2rem;
+            color: var(--deep-burgundy);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+        }
+        
+        .link-container {
+            background-color: rgba(244, 231, 184, 0.3);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .link-output a {
+            color: var(--deep-burgundy);
+            text-decoration: none;
+            font-weight: 500;
+            font-family: var(--font-body);
+            word-break: break-all;
+            transition: color 0.3s ease;
+        }
+        
+        .link-output a:hover {
+            color: var(--primary-gold);
+            text-decoration: underline;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(135deg, var(--enchanted-blue), var(--royal-purple));
+            margin-top: var(--spacing-md);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            width: auto;
+        }
+        
+        .copy-btn:hover {
+            background: linear-gradient(135deg, var(--royal-purple), var(--enchanted-blue));
+        }
+        
+        .generate-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .btn-icon {
+            font-size: 1.2rem;
+            display: inline-block;
+        }
+        
+        .footer-message {
+            margin-top: var(--spacing-xl);
+            text-align: center;
+        }
+        
+        .enchanted-text {
+            font-family: var(--font-elegant);
+            font-size: 1.2rem;
+            color: var(--deep-burgundy);
+            font-style: italic;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .sparkles {
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            margin: var(--spacing-xs) 0;
+        }
+        
+        /* Animación de brillo para el contenedor de enlaces */
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px var(--shadow-color); }
+            50% { box-shadow: 0 0 15px var(--primary-gold); }
+            100% { box-shadow: 0 0 5px var(--shadow-color); }
+        }
+        
+        .link-output:hover {
+            animation: glow 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animación de rosas flotantes (opcional) -->
+    <div id="falling-roses-container"></div>
+    
+    <div class="admin-container">
+        <h1>Generador de Enlaces de Invitación</h1>
+        <div class="form-group">
+            <label for="guestNameInput">Nombre del Invitado:</label>
+            <input type="text" id="guestNameInput" placeholder="Ej: Juan Pérez">
+        </div>
+        <button onclick="generateLink()" class="generate-btn">
+            <span class="btn-icon">✨</span>
+            <span class="btn-text">Generar Enlace</span>
+        </button>
+        
+        <div class="link-output" id="generatedLinkOutput" style="display: none;">
+            <p class="output-title">Enlace personalizado:</p>
+            <div class="link-container">
+                <a id="invitationLink" href="#" target="_blank"></a>
+            </div>
+            <button class="copy-btn" onclick="copyLink()">
+                <span class="btn-icon">📋</span>
+                <span class="btn-text">Copiar Enlace</span>
+            </button>
+        </div>
+        
+        <div class="footer-message">
+            <p class="enchanted-text">"La magia comienza con una invitación..."</p>
+            <div class="sparkles">✨ 🌹 ✨</div>
+        </div>
+    </div>
+
+    <script>
+        function generateLink() {
+            const guestName = document.getElementById('guestNameInput').value.trim();
+            if (guestName) {
+                // Esta URL base asume que la invitación principal está en 'tu-dominio.com/invitation/index.html'.
+                // Ajústala si la estructura de tu proyecto es diferente.
+                const baseUrl = window.location.origin + '/invitation/index.html';
+                const encodedName = encodeURIComponent(guestName);
+                const personalizedLink = `${baseUrl}?name=${encodedName}`;
+                
+                const linkElement = document.getElementById('invitationLink');
+                linkElement.href = personalizedLink;
+                linkElement.textContent = personalizedLink;
+                
+                const outputContainer = document.getElementById('generatedLinkOutput');
+                outputContainer.style.display = 'block';
+                
+                // Efecto visual para indicar que se generó el enlace
+                outputContainer.style.animation = 'none'; // Resetea la animación
+                setTimeout(() => {
+                    // Vuelve a aplicar la animación para que se reinicie
+                    outputContainer.style.animation = 'glow 2s infinite';
+                }, 10);
+
+            } else {
+                alert('Por favor, ingresa un nombre para el invitado.');
+            }
+        }
+
+        function copyLink() {
+            const linkElement = document.getElementById('invitationLink');
+            const linkText = linkElement.textContent;
+            navigator.clipboard.writeText(linkText).then(() => {
+                // Cambiar el texto del botón temporalmente para indicar éxito
+                const copyBtn = document.querySelector('.copy-btn');
+                const originalContent = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<span class="btn-icon">✅</span><span class="btn-text">¡Enlace Copiado!</span>';
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalContent;
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar el enlace: ', err);
+                alert('No se pudo copiar el enlace. Por favor, cópialo manualmente.');
+            });
+        }
+        
+        // Opcional: Animación de rosas flotantes similar a la invitación principal
+        function createFallingRoses() {
+            const container = document.getElementById('falling-roses-container');
+            const roseEmojis = ['🌹', '✨', '💫'];
+            
+            setInterval(() => {
+                if (Math.random() > 0.7) { // Reducir frecuencia para no sobrecargar
+                    const rose = document.createElement('div');
+                    rose.className = 'falling-rose';
+                    rose.textContent = roseEmojis[Math.floor(Math.random() * roseEmojis.length)];
+                    rose.style.left = Math.random() * 100 + 'vw';
+                    rose.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                    rose.style.setProperty('--fall-duration', (Math.random() * 5 + 3) + 's');
+                    rose.style.setProperty('--rose-drift', (Math.random() * 100 - 50) + 'px');
+                    rose.style.setProperty('--rose-rotate-start', (Math.random() * 360) + 'deg');
+                    rose.style.setProperty('--rose-rotate-end', (Math.random() * 360) + 'deg');
+                    
+                    container.appendChild(rose);
+                    
+                    // Eliminar el elemento del DOM después de que termine la animación para no saturar la memoria
+                    setTimeout(() => {
+                        if (rose && rose.parentNode === container) {
+                            container.removeChild(rose);
+                        }
+                    }, 8000); // Un tiempo mayor a la duración máxima de la animación
+                }
+            }, 300);
+        }
+        
+        // Iniciar animación de rosas al cargar la página
+        createFallingRoses();
+    </script>
+</body>
+</html>

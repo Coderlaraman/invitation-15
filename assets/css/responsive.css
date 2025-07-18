@@ -81,52 +81,291 @@
     }
     .response-buttons {
         gap: var(--spacing-md);
+        /* Mantener la estructura en fila para tablets */
     }
     .response-btn {
         padding: var(--spacing-md) var(--spacing-lg);
         min-height: 60px;
+        width: 200px; /* Ancho fijo para ambos botones en tablets */
+    }
+    
+    .btn-text {
+        font-size: 1.1rem; /* Tamaño de fuente ligeramente menor en tablets */
+    }
+    
+    .btn-icon {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .btn-icon img, .btn-icon span {
+        width: 26px;
+        height: 26px;
+        font-size: 26px;
     }
 }
 
 @media (max-width: 480px) {
     .corner-frame {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
     }
     .corner-letter {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
     .side-character {
-        width: 60px;
-        opacity: 0.15;
+        display: none; /* Ocultar personajes laterales en móviles muy pequeños */
+    }
+    
+    /* Cambiar la disposición de los botones para móviles */
+    .response-buttons {
+        flex-direction: column; /* Uno encima del otro */
+        align-items: center; /* Centrados */
+        gap: var(--spacing-sm); /* Menos espacio entre ellos */
+    }
+    
+    .response-btn {
+        width: 180px; /* Ancho fijo para ambos botones en móviles */
+        min-height: 55px; /* Altura mínima reducida */
+    }
+    
+    .btn-text {
+        font-size: 1rem; /* Tamaño de fuente menor en móviles */
+    }
+    
+    .btn-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+    }
+    
+    .btn-icon img, .btn-icon span {
+        width: 24px;
+        height: 24px;
+        font-size: 24px;
     }
     .main-content {
         padding: var(--spacing-md) var(--spacing-sm);
+        margin-top: 0;
     }
     .frame-border.top-border,
     .frame-border.bottom-border {
-        height: 10px;
+        height: 8px;
     }
     .frame-border.left-border,
     .frame-border.right-border {
-        width: 10px;
+        width: 8px;
+    }
+    /* Optimizar carrusel para móviles */
+    .photo-carousel-container {
+        padding: var(--spacing-sm) 0;
     }
     .photo-carousel {
-        max-width: 280px;
+        max-width: 100%;
         height: 280px;
+        border-width: 3px;
     }
+    .quinceañera-photo {
+        object-fit: cover;
+        object-position: center top;
+    }
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+    .prev-btn {
+        left: 5px;
+    }
+    .next-btn {
+        right: 5px;
+    }
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+    /* Optimizar detalles del evento */
     .event-details {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
+        margin: var(--spacing-sm) 0;
     }
     .theme-description {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm);
+        margin: var(--spacing-sm) 0;
     }
     .detail-item {
         flex-direction: column;
         text-align: center;
-        gap: var(--spacing-sm);
+        gap: var(--spacing-xs);
+        padding: var(--spacing-xs) 0;
     }
     .detail-content {
         text-align: center;
+    }
+    /* Optimizar botones de respuesta */
+    .response-buttons {
+        gap: var(--spacing-sm);
+        margin-top: var(--spacing-md);
+    }
+    .response-btn {
+        padding: var(--spacing-sm) var(--spacing-md);
+        min-height: 50px;
+        font-size: 1rem;
+    }
+    .btn-icon {
+        font-size: 1.2rem;
+        margin-right: 8px;
+    }
+    /* Optimizar textos */
+    .celebrant-name {
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin-bottom: var(--spacing-xs);
+    }
+    .subtitle {
+        font-size: clamp(1rem, 4vw, 1.2rem);
+    }
+}
+
+/* Optimizaciones para conexiones lentas */
+.reduce-animations * {
+    animation-duration: 0.5s !important;
+    transition-duration: 0.3s !important;
+}
+
+.reduce-animations .falling-rose {
+    display: none !important;
+}
+
+.reduce-animations .sparkle-effect,
+.reduce-animations .fireworks-effect {
+    opacity: 0.5 !important;
+}
+
+.reduce-animations .response-btn:hover {
+    transform: scale(1.03) !important;
+}
+
+.reduce-animations .response-btn:active {
+    transform: scale(0.98) !important;
+}
+
+/* Optimizaciones para orientación paisaje en móviles */
+@media (max-width: 900px) and (orientation: landscape) {
+    body {
+        overflow-y: auto;
+    }
+    .invitation-container {
+        min-height: auto;
+    }
+    .main-content {
+        padding: var(--spacing-md) var(--spacing-sm);
+        min-height: auto;
+    }
+    .cover-header {
+        min-height: 60px;
+        height: auto;
+        max-height: 200px;
+        margin-top: 10px;
+    }
+    .cover-header img {
+        height: auto;
+        max-height: 180px;
+    }
+    .side-character {
+        display: none;
+    }
+    .photo-carousel {
+        height: 220px;
+        max-width: 220px;
+    }
+    .response-buttons {
+        flex-direction: row;
+        gap: var(--spacing-sm);
+        margin: var(--spacing-md) auto;
+        justify-content: center;
+    }
+    .response-btn {
+        min-height: 45px;
+        font-size: 0.9rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    .event-details, .theme-description {
+        padding: var(--spacing-sm);
+        margin: var(--spacing-xs) 0;
+    }
+    .detail-item {
+        margin-bottom: var(--spacing-xs);
+    }
+    .footer-message {
+        margin-top: var(--spacing-sm);
+    }
+}
+
+/* Optimizaciones para dispositivos muy pequeños */
+@media (max-width: 360px) {
+    .cover-header {
+        min-height: 60px;
+        margin-top: 20px;
+    }
+    .cover-header img {
+        min-height: 60px;
+        max-height: 100px;
+        border-radius: 20px;
+    }
+    .cover-title {
+        top: 30px;
+        font-size: clamp(1.5rem, 7vw, 2rem);
+    }
+    #guest-name {
+        bottom: 30px;
+        font-size: clamp(1.2rem, 5vw, 1.5rem);
+        padding: 5px 10px;
+    }
+    .photo-carousel {
+        height: 220px;
+        border-width: 2px;
+    }
+    .carousel-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    .response-btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        min-height: 45px;
+        font-size: 0.9rem;
+    }
+    .btn-icon {
+        font-size: 1rem;
+        margin-right: 5px;
+    }
+    .event-details-title, 
+    .info-section-title {
+        font-size: 1.2rem;
+    }
+    .detail-icon {
+        font-size: 1.5rem;
+    }
+    .detail-year {
+        font-size: 1rem;
+    }
+    .detail-info {
+        font-size: 0.8rem;
+    }
+    .location-btn {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+    .whatsapp-confirmation {
+        padding: 10px;
+    }
+    .confirmation-content p:first-child {
+        font-size: 1rem;
+    }
+    .confirmation-content p:last-child {
+        font-size: 0.8rem;
+    }
+    .confirmation-decoration {
+        font-size: 1rem;
     }
 }

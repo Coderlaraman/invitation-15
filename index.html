@@ -2,7 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#DAA520" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Invitación XV Años - Karoline Zamara Vélez Sierra</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,6 +14,8 @@
       href="https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400&family=Playfair+Display:wght@300;400;600;700&family=Dancing+Script:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" href="assets/images/portada.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="assets/fonts/beauty-and-the-beast.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="stylesheet" href="assets/css/variables.css" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
@@ -24,8 +30,16 @@
       <div class="celebrant-name" style="margin-top: 50px">Mis XV años.</div>
       <!-- Cabecera tipo portada -->
       <div class="cover-header">
-        <img src="assets/images/portada.png" alt="Portada Bella y Bestia" />
+        <img 
+          src="assets/images/portada.png" 
+          alt="Portada Bella y Bestia" 
+          loading="eager" 
+          fetchpriority="high" 
+          width="700" 
+          height="400" 
+        />
         <div class="cover-title">Érase una vez...</div>
+        <h2 class="celebrant-name" id="guest-name">Invitado/a Especial</h2>
       </div>
 
       <!-- Imágenes laterales de los personajes -->
@@ -34,6 +48,9 @@
           src="assets/images/img19.jpg"
           alt="Bestia"
           class="character-side-img"
+          loading="lazy"
+          width="300"
+          height="600"
         />
       </div>
 
@@ -42,6 +59,9 @@
           src="assets/images/img20.jpg"
           alt="Bella"
           class="character-side-img"
+          loading="lazy"
+          width="300"
+          height="600"
         />
       </div>
 
@@ -60,8 +80,8 @@
             />
           </button>
           <p class="subtitle">
-            En un reino encantado, una princesa que estaba a punto de cumplir
-            quince años...
+            En un reino encantado, donde las rosas brillan y los objetos cobran vida, 
+            una joven doncella está a punto de celebrar sus quince años...
           </p>
         </div>
 
@@ -79,6 +99,9 @@
                   src="assets/images/Karoline1.jpg"
                   alt="Karoline Zamara - Foto 1"
                   class="quinceañera-photo"
+                  loading="eager"
+                  width="400"
+                  height="400"
                 />
               </div>
               <div class="photo-slide">
@@ -86,6 +109,9 @@
                   src="assets/images/Karoline2.png"
                   alt="Karoline Zamara - Foto 2"
                   class="quinceañera-photo"
+                  loading="lazy"
+                  width="400"
+                  height="400"
                 />
               </div>
               <div class="photo-slide">
@@ -93,13 +119,19 @@
                   src="assets/images/Karoline3.jpg"
                   alt="Karoline Zamara - Foto 3"
                   class="quinceañera-photo"
+                  loading="lazy"
+                  width="400"
+                  height="400"
                 />
               </div>
               <div class="photo-slide">
                 <img
-                  src="assets/images/img7.jpg"
+                  src="assets/images/Karoline4.jpg"
                   alt="Karoline Zamara - Foto 4"
                   class="quinceañera-photo"
+                  loading="lazy"
+                  width="400"
+                  height="400"
                 />
               </div>
             </div>
@@ -147,54 +179,52 @@
         </div>
 
         <div class="invitation-text">
-          <p class="subtitle" style="text-align: center">...Su nombre?</p>
-          <br />
-          <h2 class="celebrant-name">Karoline Zamara</h2>
-          <h3 class="celebrant-surname">Vélez Sierra</h3>
+          <p class="subtitle" style="text-align: center">¡Bienvenido/a al encantado castillo de</p>
+          <h2 class="celebrant-name">Karoline Sierra</h2>
           <p class="subtitle" style="text-align: center">
             Quien, al llegar a la mágica edad de <strong>quince años</strong>,
-            soñaba con celebrar un baile real lleno de magia y encanto.
+            como Bella en aquel cuento inmortal, celebrará un baile real 
+            donde la magia y el encanto cobrarán vida.
           </p>
 
           <div class="event-details">
+            <h3 class="event-details-title">Información del Evento</h3>
             <div class="detail-item">
               <span class="detail-icon">📅</span>
               <div class="detail-content">
                 <span class="detail-text">
-                  Así fue como, en las páginas de este cuento, se escribió que
-                  la gran celebración sería el día
-                  <strong class="detail-year">Sábado 4 de Octubre</strong>
+                  Fecha
                 </span>
-                <small class="detail-year">del año 2025</small>
+                <strong class="detail-year">Sábado 4 de Octubre, 2025</strong>
               </div>
             </div>
             <div class="detail-item">
               <span class="detail-icon">🕘</span>
               <div class="detail-content">
                 <span class="detail-text">
-                  Cuando el reloj marque las
-                  <strong class="detail-year">20:00 hrs</strong>, comenzará la
-                  recepción y la cena en honor a la princesa.
+                  Hora
                 </span>
+                <strong class="detail-year">19:00 hrs</strong>
+                <small class="detail-info">Recepción y banquete</small>
               </div>
             </div>
             <div class="detail-item location-item">
               <span class="detail-icon">📍</span>
               <div class="detail-content">
                 <span class="detail-text">
-                  El escenario de este cuento será el majestuoso
-                  <strong class="detail-year"
-                    >Salón de Eventos "El Castillo"</strong
-                  >
+                  Lugar
                 </span>
-                <small class="detail-year">Av. Principal #123, Centro</small>
+                <strong class="detail-year">
+                  Celebraciónes casa quinta</strong
+                >
+                <small class="detail-year">Cra. 34 #71-08, El Raizal, Manrique Oriental</small>
                 <button
                   id="location-btn"
                   class="location-btn"
                   aria-label="Ver ubicación en Google Maps"
                 >
                   <span class="location-icon">🗺️</span>
-                  Ver ubicación
+                  Ver ubicación en mapa
                 </button>
               </div>
             </div>
@@ -202,15 +232,37 @@
 
           <div class="theme-description">
             <p class="theme-text">
-              Tú eres parte esencial de esta historia mágica. Ven y ayúdanos a
-              escribir un capítulo inolvidable.
+              Como los objetos encantados del castillo, tú eres parte esencial de esta historia mágica. 
+              Ven y ayúdanos a escribir un capítulo tan inolvidable como el cuento de La Bella y la Bestia.
             </p>
-            <p class="dress-code">
-              <strong>Código de vestimenta:</strong> Elegante / Temático, digno
-              de un cuento de hadas.
-            </p>
+          </div>
+
+          <div class="important-info-container">
+            <div class="dress-code-section">
+              <h3 class="info-section-title">Código de Vestimenta</h3>
+              <div class="dress-code-content">
+                <span class="dress-code-icon">👗</span>
+                <div>
+                  <p class="dress-code-main">Elegante / Temático</p>
+                  <p class="dress-code-details">Se sugiere vestimenta formal para la ocasión. Los caballeros pueden optar por traje o saco y corbata, y las damas por vestidos de cóctel o formales.</p>
+                  <p class="dress-code-note">Los colores reservados para nuestra quinceañera son <strong>dorado y blanco</strong>.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gifts-section">
+              <h3 class="info-section-title">Regalos</h3>
+              <div class="gifts-content">
+                <span class="gifts-icon">🎁</span>
+                <div>
+                  <p class="gifts-main">Se recibirán regalos y lluvia de sobres</p>
+                  <p class="gifts-details">Tu presencia es nuestro mayor regalo, pero si deseas obsequiar algo especial a nuestra quinceañera, los regalos y sobres serán recibidos con gratitud durante la celebración.</p>
+                </div>
+              </div>
+            </div>
+
             <div class="theme-details">
-              <span class="theme-accent">✨ Baile • Cena • Diversión ✨</span>
+              <span class="theme-accent">✨ Baile • Banquete • Magia ✨</span>
             </div>
           </div>
         </div>
@@ -222,8 +274,8 @@
             class="response-btn accept-btn btn-lg"
             aria-label="Confirmar asistencia"
           >
-            <span class="btn-icon btn-icon-lg">✨</span>
-            <span class="btn-text btn-text-lg">Asistiré al baile real</span>
+            <span class="btn-icon btn-icon-lg"><img src="assets/svg/crown.svg" alt="Corona" style="width: 28px; height: 28px;"></span>
+            <span class="btn-text btn-text-lg">Asistiré al evento</span>
           </button>
 
           <button
@@ -231,7 +283,7 @@
             class="response-btn decline-btn btn-lg"
             aria-label="No poder asistir"
           >
-            <span class="btn-icon btn-icon-lg">💔</span>
+            <span class="btn-icon btn-icon-lg"><span style="font-size: 28px; display: inline-block;">💔</span></span>
             <span class="btn-text btn-text-lg">No podré asistir</span>
           </button>
         </div>
@@ -246,11 +298,10 @@
 
         <div class="footer-message">
           <p class="enchanted-text">
-            "Y así, recordamos que la verdadera belleza se encuentra en el
-            corazón."
+            "Pues no hay mayor magia que la que nace del corazón, ni rosa más hermosa que la que florece en el amor."
           </p>
-          <div class="sparkles">✨ ⭐ ✨</div>
-          <p class="family-signature">Con amor, la familia Vélez Sierra</p>
+          <div class="sparkles">✨ 🌹 ✨</div>
+          <p class="family-signature">Con amor, la familia Sierra</p>
         </div>
       </div>
     </div>

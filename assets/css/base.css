@@ -43,7 +43,7 @@
 
 body {
     font-family: var(--font-body);
-    background: linear-gradient(135deg, var(--cream-bg) 0%, var(--soft-pink) 50%, var(--light-gold) 100%);
+    background: linear-gradient(135deg, #FFF8DC, #F0E68C, #DAA520); /* Cornsilk to Khaki to Goldenrod for soft gold contrast */
     min-height: 100vh;
     line-height: 1.6;
     color: var(--deep-burgundy);
@@ -75,10 +75,10 @@ body {
     font-size: clamp(3rem, 6vw, 5rem);
     color: var(--primary-gold);
     margin-bottom: var(--spacing-xs);
-    
     text-shadow: 2px 2px 8px rgb(25, 43, 77), 0 2px 8px #c2bebe;
     line-height: 1.1;
     text-align: center;
+    animation: fireworks 3s infinite alternate;
 }
 
 .celebrant-surname {

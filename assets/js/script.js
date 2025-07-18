@@ -1,5 +1,56 @@
 // Reproducir audio al hacer clic en la corona
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
+  // Función para solicitar y mostrar el nombre del invitado
+  function personalizeInvitation() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let guestName = urlParams.get('name');
+
+    if (!guestName) {
+      guestName = "Invitado/a Especial"; // Default name if no name in URL
+    }
+
+    const guestNameElement = document.getElementById('guest-name');
+    if (guestNameElement) {
+      guestNameElement.textContent = guestName;
+    }
+  }
+
+  // Función para animar el título y el nombre de la quinceañera
+  function animateTitles() {
+    const titles = document.querySelectorAll('.celebrant-name');
+    
+    titles.forEach(title => {
+      // Saltamos el elemento guest-name que ya tiene su propia animación
+      if (title.id === 'guest-name') return;
+      
+      // Creamos un efecto de brillo dorado que se mueve
+      const originalText = title.textContent;
+      const letters = originalText.split('');
+      
+      // Limpiamos el contenido original
+      title.textContent = '';
+      
+      // Creamos un span para cada letra
+      letters.forEach((letter, index) => {
+        const span = document.createElement('span');
+        span.textContent = letter;
+        span.style.display = 'inline-block';
+        span.style.position = 'relative';
+        
+        // Añadimos un retraso basado en el índice para crear un efecto en cascada
+        span.style.animation = `fireworks 3s ${index * 0.1}s infinite alternate`;
+        
+        title.appendChild(span);
+      });
+    });
+  }
+
+  personalizeInvitation();
+  animateTitles();
+
   var crownBtn = document.getElementById("audio-crown-btn");
   var audio = document.getElementById("audio-belle");
   if (crownBtn && audio) {
@@ -13,24 +64,23 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  initializeApp();
+  debugInfo();
 });
 // Configuración de WhatsApp y Google Maps
 const CONFIG = {
   whatsapp: {
-    phoneNumber: "525551234567", // Cambiar por el número real
+    phoneNumber: '573247747464',
     messages: {
-      accept:
-        "¡Hola! 🌹 Confirmo mi asistencia a los XV años de Karoline Zamara Vélez Sierra el 4 de octubre de 2025. ¡Será un honor acompañarla en esta noche mágica inspirada en La Bella y la Bestia! ✨👑",
-      decline:
-        "Hola, lamentablemente no podré asistir a los XV años de Karoline Zamara el 4 de octubre de 2025. Espero que tengan una hermosa celebración. Mis mejores deseos para la quinceañera. 💕🌹",
-    },
+      accept: '¡Hola! Confirmo mi asistencia a la fiesta de 15 años de Karoline Sierra. ¡Estoy emocionado/a de ser parte de esta celebración mágica! 🏰✨',
+      decline: 'Hola, lamento informar que no podré asistir a la fiesta de 15 años de Karoline Sierra. Les deseo una celebración maravillosa. 💐'
+    }
   },
   googleMaps: {
-    // Coordenadas del lugar (cambiar por las reales)
-    latitude: 19.4326,
-    longitude: -99.1332,
-    placeName: "Salón de Eventos El Castillo",
-    address: "Av. Principal #123, Centro",
+    url: 'https://maps.app.goo.gl/p6muqr1gMfoxRGWz9',
+    placeName: 'Celebraciónes casa quinta',
+    address: 'Cra. 34 #71-08, El Raizal, Manrique Oriental'
   },
 };
 
@@ -176,6 +226,19 @@ function initializeCarousel() {
 // ========== FUNCIONES DE WHATSAPP Y MAPS ==========
 
 function generateWhatsAppURL(message) {
+  // Obtener el nombre del invitado para personalizar el mensaje
+  const urlParams = new URLSearchParams(window.location.search);
+  let guestName = urlParams.get('name');
+  
+  if (guestName) {
+    // Si hay un nombre de invitado, personalizar el mensaje de manera más integrada
+    if (message.includes('Confirmo mi asistencia')) {
+      message = `¡Hola! Mi nombre es *${guestName}* y confirmo mi asistencia a la fiesta de 15 años de Karoline Sierra. ¡Estoy emocionado/a de ser parte de esta celebración mágica! 🏰✨`;
+    } else if (message.includes('no podré asistir')) {
+      message = `Hola, mi nombre es *${guestName}* y lamento informar que no podré asistir a la fiesta de 15 años de Karoline Sierra. Les deseo una celebración maravillosa. 💐`;
+    }
+  }
+  
   const encodedMessage = encodeURIComponent(message);
   return `https://wa.me/${CONFIG.whatsapp.phoneNumber}?text=${encodedMessage}`;
 }
@@ -234,14 +297,41 @@ function handleAcceptance() {
   clearPreviousAnimation();
   addButtonFeedback(acceptBtn);
 
+  // Mostrar animación de personaje
   setTimeout(() => {
     showCharacterAnimation("accept");
   }, 400);
 
+  // Abrir WhatsApp después de un breve retraso para que el usuario vea la animación
   setTimeout(() => {
     const whatsappURL = generateWhatsAppURL(CONFIG.whatsapp.messages.accept);
     window.open(whatsappURL, "_blank");
-  }, 2000);
+    
+    // Obtener el nombre del invitado para personalizar el mensaje de confirmación
+    const urlParams = new URLSearchParams(window.location.search);
+    let guestName = urlParams.get('name');
+    let personalizacion = guestName ? `${guestName}` : "";
+    
+    // Mostrar un mensaje de confirmación personalizado
+    const confirmationMsg = document.createElement('div');
+    confirmationMsg.className = 'whatsapp-confirmation';
+    confirmationMsg.innerHTML = `
+      <div class="confirmation-content">
+        <p>¡Gracias${personalizacion ? " " + personalizacion : ""} por confirmar tu asistencia! 🎉</p>
+        <p>Se ha abierto WhatsApp para enviar tu confirmación.</p>
+        <div class="confirmation-decoration">✨ 🏰 ✨</div>
+      </div>
+    `;
+    document.body.appendChild(confirmationMsg);
+    
+    // Eliminar el mensaje después de 5 segundos
+    setTimeout(() => {
+      confirmationMsg.classList.add('fade-out');
+      setTimeout(() => {
+        document.body.removeChild(confirmationMsg);
+      }, 500);
+    }, 5000);
+  }, 2500);
 }
 
 function handleDecline() {
@@ -250,14 +340,41 @@ function handleDecline() {
   clearPreviousAnimation();
   addButtonFeedback(declineBtn);
 
+  // Mostrar animación de personaje
   setTimeout(() => {
     showCharacterAnimation("decline");
   }, 400);
 
+  // Abrir WhatsApp después de un breve retraso para que el usuario vea la animación
   setTimeout(() => {
     const whatsappURL = generateWhatsAppURL(CONFIG.whatsapp.messages.decline);
     window.open(whatsappURL, "_blank");
-  }, 2000);
+    
+    // Obtener el nombre del invitado para personalizar el mensaje de confirmación
+    const urlParams = new URLSearchParams(window.location.search);
+    let guestName = urlParams.get('name');
+    let personalizacion = guestName ? `${guestName}` : "";
+    
+    // Mostrar un mensaje de confirmación personalizado
+    const confirmationMsg = document.createElement('div');
+    confirmationMsg.className = 'whatsapp-confirmation';
+    confirmationMsg.innerHTML = `
+      <div class="confirmation-content">
+        <p>Lamentamos${personalizacion ? " " + personalizacion : ""} que no puedas asistir 💔</p>
+        <p>Se ha abierto WhatsApp para enviar tu mensaje.</p>
+        <div class="confirmation-decoration">💌 🌹 💌</div>
+      </div>
+    `;
+    document.body.appendChild(confirmationMsg);
+    
+    // Eliminar el mensaje después de 5 segundos
+    setTimeout(() => {
+      confirmationMsg.classList.add('fade-out');
+      setTimeout(() => {
+        document.body.removeChild(confirmationMsg);
+      }, 500);
+    }, 5000);
+  }, 2500);
 }
 
 function handleLocationClick() {
@@ -330,6 +447,27 @@ function initializeMagicalEffects() {
 // ========== OPTIMIZACIONES MÓVILES ==========
 
 function initializeMobileOptimizations() {
+  // Detectar si es un dispositivo móvil
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+  
+  // Aplicar optimizaciones específicas para móviles
+  if (isMobile) {
+    // Reducir animaciones en dispositivos de gama baja
+    if (getConnectionType() === 'slow') {
+      document.body.classList.add('reduce-animations');
+      console.log('Optimizando para conexión lenta: reduciendo animaciones');
+    }
+    
+    // Precargar solo las imágenes esenciales
+    const nonEssentialImages = document.querySelectorAll('.side-character img, .falling-rose');
+    nonEssentialImages.forEach(img => {
+      img.loading = 'lazy';
+    });
+    
+    // Optimizar el desplazamiento suave
+    document.documentElement.style.scrollBehavior = 'smooth';
+  }
+  
   // Prevenir el zoom en dispositivos móviles al hacer doble tap
   let lastTouchEnd = 0;
   document.addEventListener(
@@ -361,6 +499,7 @@ function initializeMobileOptimizations() {
 
 // ========== MANEJO DE ERRORES ==========
 
+// Función para manejar errores de carga de imágenes y optimizar para móviles
 function handleImageError(imgElement, fallbackEmoji) {
   imgElement.style.display = "none";
   const parent = imgElement.parentElement;
@@ -385,6 +524,108 @@ function handleImageError(imgElement, fallbackEmoji) {
   parent.insertBefore(fallbackDiv, imgElement);
 }
 
+// Función para detectar el tipo de conexión
+function getConnectionType() {
+  if ('connection' in navigator) {
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (connection) {
+      if (connection.saveData) {
+        return 'slow'; // Modo de ahorro de datos activado
+      }
+      
+      if (connection.effectiveType) {
+        // Tipos de conexión: 'slow-2g', '2g', '3g', '4g'
+        return ['slow-2g', '2g'].includes(connection.effectiveType) ? 'slow' : 'fast';
+      }
+      
+      if (connection.type) {
+        return ['cellular', 'wimax'].includes(connection.type) ? 'slow' : 'fast';
+      }
+    }
+  }
+  
+  // Si no se puede determinar, asumir conexión rápida
+  return 'fast';
+}
+
+// Función para optimizar imágenes en dispositivos móviles
+function optimizeImagesForMobile() {
+  // Detectar si es un dispositivo móvil basado en el ancho de la pantalla
+  const isMobile = window.innerWidth <= 768;
+  const isSmallMobile = window.innerWidth <= 480;
+  const isLandscape = window.innerWidth > window.innerHeight;
+  const connectionType = getConnectionType();
+  
+  // Obtener todas las imágenes del carrusel
+  const carouselImages = document.querySelectorAll('.quinceañera-photo');
+  
+  // Optimizar imagen de portada
+  const coverImage = document.querySelector('.cover-header img');
+  if (coverImage) {
+    if (isSmallMobile) {
+      coverImage.style.objectFit = 'cover';
+      coverImage.style.objectPosition = 'center 40%';
+    }
+  }
+  
+  // Optimizar imágenes del carrusel
+  carouselImages.forEach((img, index) => {
+    // Establecer atributos de carga diferida para mejorar el rendimiento
+    // Solo la primera imagen se carga inmediatamente, el resto con lazy loading
+    img.loading = index === 0 ? 'eager' : 'lazy';
+    
+    // Ajustar calidad de imagen según el dispositivo
+    if (isSmallMobile) {
+      // Para dispositivos muy pequeños, priorizar velocidad sobre calidad
+      img.style.objectFit = 'cover';
+      img.style.objectPosition = isLandscape ? 'center center' : 'center 20%';
+    } else if (isMobile) {
+      // Para tablets y móviles medianos
+      img.style.objectFit = 'cover';
+      img.style.objectPosition = 'center 30%';
+    }
+    
+    // En conexiones lentas, intentar cargar versiones optimizadas de las imágenes
+    if (connectionType === 'slow' && !img.dataset.optimized) {
+      const originalSrc = img.src;
+      const fileExtension = originalSrc.split('.').pop();
+      const optimizedSrc = originalSrc.replace(`.${fileExtension}`, `-optimized.${fileExtension}`);
+      
+      // Marcar como ya optimizada para evitar intentos repetidos
+      img.dataset.optimized = 'true';
+      
+      // Intentar cargar versión optimizada
+      const tempImg = new Image();
+      tempImg.onload = function() {
+        img.src = optimizedSrc;
+        console.log('Cargada versión optimizada:', optimizedSrc);
+      };
+      tempImg.onerror = function() {
+        // Si no existe versión optimizada, mantener original
+        console.log('No se encontró versión optimizada para:', originalSrc);
+      };
+      tempImg.src = optimizedSrc;
+    }
+    
+    // Añadir manejador de errores a cada imagen
+    img.onerror = function() {
+      handleImageError(this, '📸');
+    };
+  });
+  
+  // Optimizar imágenes de personajes laterales
+  const sideCharacters = document.querySelectorAll('.character-side-img');
+  sideCharacters.forEach(img => {
+    img.loading = 'lazy';
+    if (isSmallMobile || (isMobile && isLandscape)) {
+      // En móviles pequeños o en modo paisaje, ocultar para mejorar rendimiento
+      img.style.opacity = '0.4';
+    } else {
+      img.style.opacity = '1';
+    }
+  });
+}
+
 // ========== INICIALIZACIÓN PRINCIPAL ==========
 
 function initializeApp() {
@@ -401,6 +642,7 @@ function initializeApp() {
 
   // Inicializar optimizaciones móviles
   initializeMobileOptimizations();
+  optimizeImagesForMobile();
 
   // Event listeners principales
   acceptBtn.addEventListener("click", handleAcceptance);
@@ -422,6 +664,116 @@ function initializeApp() {
   metaDescription.content =
     "Te invitamos a los XV años de Karoline Zamara Vélez Sierra. Una noche mágica inspirada en La Bella y la Bestia. 4 de octubre de 2025.";
   document.head.appendChild(metaDescription);
+  
+  // Manejar cambios de orientación
+  window.addEventListener('orientationchange', handleOrientationChange);
+  window.addEventListener('resize', debounce(handleResize, 250));
+}
+
+// Función para manejar cambios de orientación
+function handleOrientationChange() {
+  // Pequeño retraso para permitir que el navegador complete el cambio de orientación
+  setTimeout(() => {
+    optimizeImagesForMobile();
+    adjustCarouselHeight();
+    adjustInvitationLayout();
+  }, 300);
+}
+
+// Función para ajustar el layout general de la invitación según la orientación
+function adjustInvitationLayout() {
+  const isLandscape = window.innerWidth > window.innerHeight;
+  const isMobile = window.innerWidth <= 768;
+  const container = document.querySelector('.invitation-container');
+  const mainContent = document.querySelector('.main-content');
+  const responseButtons = document.querySelector('.response-buttons');
+  
+  if (isMobile && isLandscape) {
+    // En modo paisaje en móviles, ajustar el contenedor principal
+    if (container) {
+      container.style.minHeight = 'auto';
+      container.style.height = 'auto';
+      container.style.maxHeight = '100vh';
+      container.style.overflowY = 'auto';
+    }
+    
+    // Ajustar los botones de respuesta en modo paisaje
+    if (responseButtons) {
+      responseButtons.style.flexDirection = 'row';
+      responseButtons.style.justifyContent = 'center';
+      responseButtons.style.gap = 'var(--spacing-sm)';
+    }
+  } else {
+    // Restaurar estilos en modo retrato
+    if (container) {
+      container.style.minHeight = '';
+      container.style.height = '';
+      container.style.maxHeight = '';
+      container.style.overflowY = '';
+    }
+    
+    // Restaurar botones de respuesta en modo retrato
+    if (responseButtons && window.innerWidth <= 480) {
+      responseButtons.style.flexDirection = 'column';
+      responseButtons.style.justifyContent = '';
+      responseButtons.style.gap = '';
+    }
+  }
+}
+
+// Función para ajustar la altura del carrusel según el ancho disponible
+function adjustCarouselHeight() {
+  const carousel = document.querySelector('.photo-carousel');
+  if (!carousel) return;
+  
+  const isLandscape = window.innerWidth > window.innerHeight;
+  const isMobile = window.innerWidth <= 768;
+  const isSmallMobile = window.innerWidth <= 480;
+  
+  // En dispositivos muy pequeños o en modo paisaje en móviles
+  if (isSmallMobile || (isMobile && isLandscape)) {
+    // Ajustar altura para mantener proporción y evitar que ocupe demasiado espacio
+    let newHeight;
+    
+    if (isLandscape) {
+      // En modo paisaje, limitar la altura para que no ocupe toda la pantalla
+      newHeight = Math.min(220, window.innerHeight * 0.5);
+    } else {
+      // En modo retrato en móviles pequeños
+      newHeight = Math.min(280, window.innerHeight * 0.35);
+    }
+    
+    carousel.style.height = `${newHeight}px`;
+    
+    // Ajustar también el ancho en modo paisaje para mejor visualización
+    if (isLandscape) {
+      carousel.style.maxWidth = `${newHeight * 1.2}px`;
+      carousel.style.margin = '0 auto';
+    } else {
+      carousel.style.maxWidth = '';
+      carousel.style.margin = '';
+    }
+  } else {
+    // Restablecer a valores predeterminados para otros tamaños
+    carousel.style.height = '';
+  }
+}
+
+// Función debounce para evitar múltiples llamadas durante el redimensionamiento
+function debounce(func, wait) {
+  let timeout;
+  return function() {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  };
+}
+
+// Función para manejar el redimensionamiento de la ventana
+function handleResize() {
+  optimizeImagesForMobile();
+  adjustCarouselHeight();
 }
 
 // ========== DEBUG Y TESTING ==========
@@ -451,10 +803,8 @@ function debugInfo() {
 
 // ========== INICIALIZACIÓN ==========
 
-document.addEventListener("DOMContentLoaded", function () {
   initializeApp();
   debugInfo();
-});
 
 // Manejar errores globales
 window.addEventListener("error", function (e) {
