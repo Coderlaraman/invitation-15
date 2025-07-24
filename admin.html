@@ -321,7 +321,7 @@
             <div class="link-container">
                 <a id="invitationLink" href="#" target="_blank"></a>
             </div>
-            <button class="copy-btn" onclick="copyLink()">
+            <button type="button" class="copy-btn" onclick="copyLink(event)" aria-label="Copiar enlace">
                 <span class="btn-icon">📋</span>
                 <span class="btn-text">Copiar Enlace</span>
             </button>
@@ -335,49 +335,90 @@
 
     <script>
         function generateLink() {
-            const guestName = document.getElementById('guestNameInput').value.trim();
+            const guestNameInput = document.getElementById('guestNameInput');
+            let guestName = guestNameInput.value.trim();
+
+            // Limpiar el nombre para permitir solo letras, acentos y espacios
+            guestName = guestName.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+
             if (guestName) {
-                // Esta URL base asume que la invitación principal está en 'tu-dominio.com/invitation/index.html'.
-                // Ajústala si la estructura de tu proyecto es diferente.
-                const baseUrl = window.location.origin + '/invitation-15/index.html';
+                // URL base dinámica y robusta
+                const baseUrl = window.location.origin + window.location.pathname.replace('admin.html', 'index.html');
                 const encodedName = encodeURIComponent(guestName);
                 const personalizedLink = `${baseUrl}?name=${encodedName}`;
-                
+
                 const linkElement = document.getElementById('invitationLink');
                 linkElement.href = personalizedLink;
                 linkElement.textContent = personalizedLink;
-                
+
                 const outputContainer = document.getElementById('generatedLinkOutput');
                 outputContainer.style.display = 'block';
-                
+
                 // Efecto visual para indicar que se generó el enlace
                 outputContainer.style.animation = 'none'; // Resetea la animación
-                setTimeout(() => {
-                    // Vuelve a aplicar la animación para que se reinicie
-                    outputContainer.style.animation = 'glow 2s infinite';
-                }, 10);
+                void outputContainer.offsetWidth; // Fuerza el reflow
+                outputContainer.style.animation = 'glow 2s infinite';
 
             } else {
-                alert('Por favor, ingresa un nombre para el invitado.');
+                alert('Por favor, ingresa un nombre válido para el invitado.');
             }
         }
 
-        function copyLink() {
+        function copyLink(event) {
             const linkElement = document.getElementById('invitationLink');
             const linkText = linkElement.textContent;
-            navigator.clipboard.writeText(linkText).then(() => {
-                // Cambiar el texto del botón temporalmente para indicar éxito
-                const copyBtn = document.querySelector('.copy-btn');
+            const copyBtn = event.currentTarget;
+
+            // Función para actualizar la UI del botón tras copiar
+            const showSuccess = () => {
                 const originalContent = copyBtn.innerHTML;
                 copyBtn.innerHTML = '<span class="btn-icon">✅</span><span class="btn-text">¡Enlace Copiado!</span>';
-                
+                copyBtn.disabled = true;
+
                 setTimeout(() => {
                     copyBtn.innerHTML = originalContent;
+                    copyBtn.disabled = false;
                 }, 2000);
-            }).catch(err => {
-                console.error('Error al copiar el enlace: ', err);
+            };
+
+            // Intentar usar la API moderna (requiere contexto seguro: HTTPS o localhost)
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(linkText).then(showSuccess).catch(err => {
+                    console.error('Error con navigator.clipboard: ', err);
+                    fallbackCopy(linkText, showSuccess); // Intentar fallback si falla
+                });
+            } else {
+                // Usar el método de fallback para contextos no seguros (file:// o HTTP)
+                fallbackCopy(linkText, showSuccess);
+            }
+        }
+
+        function fallbackCopy(textToCopy, successCallback) {
+            const textArea = document.createElement('textarea');
+            textArea.value = textToCopy;
+            
+            // Estilos para hacer el textarea invisible
+            textArea.style.position = 'fixed';
+            textArea.style.top = '-9999px';
+            textArea.style.left = '-9999px';
+
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    successCallback();
+                } else {
+                    throw new Error('Fallback copy was unsuccessful.');
+                }
+            } catch (err) {
+                console.error('Error en el fallback de copiado: ', err);
                 alert('No se pudo copiar el enlace. Por favor, cópialo manualmente.');
-            });
+            } finally {
+                document.body.removeChild(textArea);
+            }
         }
         
         // Opcional: Animación de rosas flotantes similar a la invitación principal
@@ -386,6 +427,11 @@
             const roseEmojis = ['🌹', '✨', '💫'];
             
             setInterval(() => {
+                // Optimización: evitar que el contenedor se llene en exceso
+                if (container.childElementCount > 50) {
+                    container.removeChild(container.firstChild);
+                }
+
                 if (Math.random() > 0.7) { // Reducir frecuencia para no sobrecargar
                     const rose = document.createElement('div');
                     rose.className = 'falling-rose';
@@ -399,7 +445,7 @@
                     
                     container.appendChild(rose);
                     
-                    // Eliminar el elemento del DOM después de que termine la animación para no saturar la memoria
+                    // Eliminar el elemento del DOM después de que termine la animación
                     setTimeout(() => {
                         if (rose && rose.parentNode === container) {
                             container.removeChild(rose);

@@ -22,8 +22,7 @@
     max-height: 120px;
   }
   .side-character {
-    width: 70px;
-    opacity: 0.35;
+    display: none; /* Ocultar personajes laterales en móviles */
   }
 }
 
@@ -52,16 +51,49 @@
         font-size: 2.5rem;
     }
     .side-character {
-        width: 80px;
-        opacity: 0.2;
+        display: none; /* Ocultar personajes en tablets y móviles */
     }
+
     .main-content {
         padding: var(--spacing-lg) var(--spacing-md);
+        margin-top: 0; /* Asegurar que no haya margen superior no deseado */
     }
+
+    .cover-header {
+        width: 95%; /* Reducir el ancho para crear márgenes */
+        margin: 0 auto; /* Centrar el contenedor */
+        height: auto; /* Altura automática para fluidez */
+        max-width: 100%;
+    }
+
+    .cover-header img {
+        width: 100%;
+        height: auto; /* Altura automática para mantener proporción */
+        max-height: 50vh; /* Limitar la altura para que no sea excesiva */
+        border-radius: 32px; /* Redondear todas las esquinas */
+        object-fit: cover;
+    }
+
+    .guest-highlight {
+        margin-top: var(--spacing-lg);
+    }
+
     .photo-carousel {
-        max-width: 300px;
+        max-width: 100%;
         height: 300px;
     }
+
+    .response-buttons {
+        flex-direction: column; /* Apilar botones en tablets */
+        align-items: center;
+        gap: var(--spacing-md);
+    }
+
+    .response-btn {
+        width: 80%;
+        max-width: 300px; /* Ancho máximo para los botones */
+    }
+
     .carousel-btn {
         width: 40px;
         height: 40px;
