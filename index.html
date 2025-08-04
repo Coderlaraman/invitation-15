@@ -69,7 +69,13 @@
     <!-- Animación de rosas flotantes -->
     <div id="falling-roses-container"></div>
     <div class="invitation-container">
-      <div class="celebrant-name" style="margin-top: 50px">Mis 15 años.</div>
+      <div class="celebrant-name" style="margin-top: 50px;">
+      <div>
+        <span>Mis</span>
+        <span>15</span>
+        <span>años</span>
+      </div>
+    </div>
 
       <!-- Cabecera tipo portada -->
       <div class="cover-header">
@@ -86,8 +92,8 @@
 
       <!-- NUEVA UBICACIÓN DEL NOMBRE DEL INVITADO -->
       <div class="guest-highlight">
-        <p class="intro-text">Esta invitación especial está dirigida a:</p>
-        <h2 class="guest-name" id="guest-name">Invitado de Honor</h2>
+        <p class="guest-name">Invitado de Honor</p>
+        <h2 class="guest-name" id="guest-name" style="color: var(--primary-gold);">Invitado de Honor</h2>
       </div>
       <!-- FIN DEL BLOQUE DE INVITADO -->
 
@@ -244,7 +250,12 @@
             vida, una joven doncella está a punto de celebrar sus quince años...
           </p>
           <br />
-          <h2 class="celebrant-name">Karoline Sierra</h2>
+          <h2>
+            <div class="celebrant-name">
+            <spam>Karoline</spam>
+            <spam>Sierra</spam>
+          </div>
+        </h2>
           <p
             class="subtitle"
             style="
@@ -264,14 +275,14 @@
             <div class="detail-item">
               <span class="detail-icon">📅</span>
               <div class="detail-content">
-                <span class="detail-text"> Fecha </span>
+                <span class="detail-text" style="font-size: x-large;"> Fecha </span>
                 <strong class="detail-year">Sábado 4 de Octubre, 2025</strong>
               </div>
             </div>
             <div class="detail-item">
               <span class="detail-icon">🕘</span>
               <div class="detail-content">
-                <span class="detail-text"> Hora </span>
+                <span class="detail-text" style="font-size: x-large;"> Hora </span>
                 <strong class="detail-year">19:00 hrs</strong>
                 <small class="detail-info">Recepción y banquete</small>
               </div>
@@ -279,7 +290,7 @@
             <div class="detail-item location-item">
               <span class="detail-icon">📍</span>
               <div class="detail-content">
-                <span class="detail-text"> Lugar </span>
+                <span class="detail-text" style="font-size: x-large;"> Lugar </span>
                 <strong class="detail-year"> Celebraciónes casa quinta</strong>
                 <small class="detail-year"
                   >Cra. 34 #71-08, El Raizal, Manrique Oriental</small
@@ -288,8 +299,10 @@
                   id="location-btn"
                   class="location-btn"
                   aria-label="Ver ubicación en Google Maps"
+                   style="font-size: 1.5rem;"
+                  onclick="window.open('https://www.google.com/maps/search/?api=1&query=Carrera%2034%20%23%2071-08%20barrio%20El%20Raizal%20Sector%20Manrique%20Oriental%20en%20Medellín%20Antioquia', '_blank')"
                 >
-                  <span class="location-icon">🗺️</span>
+                  <span class="location-icon" style="font-size: 1.5rem;">🗺️</span>
                   Ver ubicación en mapa
                 </button>
               </div>
@@ -329,7 +342,7 @@
               <div class="gifts-content">
                 <span class="gifts-icon">🎁</span>
                 <div>
-                  <p class="gifts-main">
+                  <p class="gifts-main" style="font-size: 1.8rem;">
                     Se recibirán regalos y lluvia de sobres
                   </p>
                   <p class="gifts-details">

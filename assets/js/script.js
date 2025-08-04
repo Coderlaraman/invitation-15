@@ -6,15 +6,27 @@ document.addEventListener("DOMContentLoaded", function () {
   // Función para solicitar y mostrar el nombre del invitado
   function personalizeInvitation() {
     const urlParams = new URLSearchParams(window.location.search);
-    let guestName = urlParams.get('name');
+    const guestName = urlParams.get('name');
+    const token = urlParams.get('token');
+    const secretKey = 'K4r0l1n3-Z4m4r4-2025'; // La misma clave secreta que en admin.html
 
-    if (!guestName) {
-      guestName = "Invitado/a Especial"; // Default name if no name in URL
+    let displayName = "Invitado de Honor"; // Nombre por defecto
+
+    if (guestName && token) {
+        try {
+            // Re-crear el token para verificarlo
+            const expectedToken = btoa(guestName + secretKey);
+            if (token === expectedToken) {
+                displayName = guestName;
+            }
+        } catch (e) {
+            console.error("Error al verificar el token:", e);
+        }
     }
 
     const guestNameElement = document.getElementById('guest-name');
     if (guestNameElement) {
-      guestNameElement.textContent = guestName;
+        guestNameElement.textContent = displayName;
     }
   }
 

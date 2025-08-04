@@ -226,12 +226,18 @@
         margin: var(--spacing-sm) 0;
     }
     .detail-item {
-        flex-direction: column;
+        display: flex; /* Asegurarse de que es un contenedor flex */
+        flex-direction: column; /* Apilar elementos verticalmente */
+        align-items: center; /* Centrar horizontalmente */
         text-align: center;
         gap: var(--spacing-xs);
         padding: var(--spacing-xs) 0;
     }
+
     .detail-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centrar el contenido interno */
         text-align: center;
     }
     /* Optimizar botones de respuesta */
