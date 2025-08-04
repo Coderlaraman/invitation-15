@@ -347,7 +347,7 @@
                 const token = btoa(guestName + secretKey);
 
                 // URL base dinámica y robusta
-                const baseUrl = window.location.origin + window.location.pathname.replace('admin.html', 'index.html');
+                const baseUrl = window.location.href.replace(/admin(\.html)?$/, '');
                 const encodedName = encodeURIComponent(guestName);
                 const encodedToken = encodeURIComponent(token);
                 const personalizedLink = `${baseUrl}?name=${encodedName}&token=${encodedToken}`;
