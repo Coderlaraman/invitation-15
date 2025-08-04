@@ -20,102 +20,82 @@ Este proyecto es una invitación web elegante y mágica, diseñada para ofrecer 
 
 ```
 📦invitation
- ┣ 📂.git
- ┃ ┣ 📂hooks
- ┃ ┃ ┣ 📜applypatch-msg.sample
- ┃ ┃ ┣ 📜commit-msg.sample
- ┃ ┃ ┣ 📜fsmonitor-watchman.sample
- ┃ ┃ ┣ 📜post-update.sample
- ┃ ┃ ┣ 📜pre-applypatch.sample
- ┃ ┃ ┣ 📜pre-commit.sample
- ┃ ┃ ┣ 📜pre-merge-commit.sample
- ┃ ┃ ┣ 📜pre-push.sample
- ┃ ┃ ┣ 📜pre-rebase.sample
- ┃ ┃ ┣ 📜pre-receive.sample
- ┃ ┃ ┣ 📜prepare-commit-msg.sample
- ┃ ┃ ┣ 📜push-to-checkout.sample
- ┃ ┃ ┣ 📜sendemail-validate.sample
- ┃ ┃ ┗ 📜update.sample
- ┃ ┣ 📂info
- ┃ ┃ ┗ 📜exclude
- ┃ ┣ 📂logs
- ┃ ┃ ┣ 📂refs
- ┃ ┃ ┃ ┣ 📂heads
- ┃ ┃ ┃ ┃ ┗ 📜main
- ┃ ┃ ┃ ┗ 📂remotes
- ┃ ┃ ┃ ┃ ┗ 📂origin
- ┃ ┃ ┃ ┃ ┃ ┗ 📜main
- ┃ ┃ ┗ 📜HEAD
- ┃ ┣ 📂objects
- ┃ ┃ ┣ 📂52
- ┃ ┃ ┃ ┗ 📜2e6e7d2fc24fb2f93748c2c7df55df16fe35e1
- ┃ ┃ ┣ 📂58
- ┃ ┃ ┃ ┗ 📜a1e5a70f5cb0e91d3d6903b952d81175ed1cd7
- ┃ ┃ ┣ 📂e7
- ┃ ┃ ┃ ┗ 📜953f5af89fb94cf981c8da6dab7eef30e007a0
- ┃ ┃ ┣ 📂info
- ┃ ┃ ┗ 📂pack
- ┃ ┣ 📂refs
- ┃ ┃ ┣ 📂heads
- ┃ ┃ ┃ ┗ 📜main
- ┃ ┃ ┣ 📂remotes
- ┃ ┃ ┃ ┗ 📂origin
- ┃ ┃ ┃ ┃ ┗ 📜main
- ┃ ┃ ┗ 📂tags
- ┃ ┣ 📜COMMIT_EDITMSG
- ┃ ┣ 📜config
- ┃ ┣ 📜description
- ┃ ┣ 📜HEAD
- ┃ ┗ 📜index
- ┣ 📂assets
- ┃ ┣ 📂css
- ┃ ┃ ┣ 📜animations.css
- ┃ ┃ ┣ 📜base.css
- ┃ ┃ ┣ 📜components.css
- ┃ ┃ ┣ 📜layout.css
- ┃ ┃ ┣ 📜responsive.css
- ┃ ┃ ┗ 📜variables.css
- ┃ ┣ 📂images
- ┃ ┃ ┣ 📜footer.png
- ┃ ┃ ┣ 📜header.png
- ┃ ┃ ┣ 📜img.png
- ┃ ┃ ┣ 📜img1.jpg
- ┃ ┃ ┣ 📜img10.jpg
- ┃ ┃ ┣ 📜img11.jpg
- ┃ ┃ ┣ 📜img12.jpg
- ┃ ┃ ┣ 📜img13.jpg
- ┃ ┃ ┣ 📜img14.jpg
- ┃ ┃ ┣ 📜img15.jpg
- ┃ ┃ ┣ 📜img16.jpg
- ┃ ┃ ┣ 📜img17.jpg
- ┃ ┃ ┣ 📜img18.jpg
- ┃ ┃ ┣ 📜img19.jpg
- ┃ ┃ ┣ 📜img2.jpg
- ┃ ┃ ┣ 📜img3.jpg
- ┃ ┃ ┣ 📜img4.jpg
- ┃ ┃ ┣ 📜img5.jpg
- ┃ ┃ ┣ 📜img6.jpg
- ┃ ┃ ┣ 📜img7.jpg
- ┃ ┃ ┣ 📜img8.jpg
- ┃ ┃ ┣ 📜img9.jpg
- ┃ ┃ ┣ 📜melody.jpg
- ┃ ┃ ┣ 📜portada.webp
- ┃ ┃ ┣ 📜portada1.webp
- ┃ ┃ ┣ 📜portada2.webp
- ┃ ┃ ┣ 📜rose.jpg
- ┃ ┃ ┗ 📜rose.png
- ┃ ┣ 📂js
- ┃ ┃ ┣ 📜roses.js
- ┃ ┃ ┗ 📜script.js
- ┃ ┣ 📂sounds
- ┃ ┃ ┗ 📜beauty-and-the-beast.mp3
- ┃ ┗ 📂svg
- ┃ ┃ ┣ 📜chip-happy.svg
- ┃ ┃ ┣ 📜chip-sad.svg
- ┃ ┃ ┣ 📜marco-bottom.svg
- ┃ ┃ ┗ 📜marco-top.svg
- ┣ 📜index.html
- ┗ 📜README.md
+┣ 📂.git
+┣ 📂assets
+┃ ┣ 📂css
+┃ ┃ ┣ 📜animations.css
+┃ ┃ ┣ 📜base.css
+┃ ┃ ┣ 📜components.css
+┃ ┃ ┣ 📜layout.css
+┃ ┃ ┣ 📜responsive.css
+┃ ┃ ┗ 📜variables.css
+┃ ┣ 📂images
+┃ ┃ ┣ 📜.temp-15-37-53-sKaroline1.jpg
+┃ ┃ ┣ 📜ChatGPT Image 30 jun 2025, 05_12_13 p.m..png
+┃ ┃ ┣ 📜ChatGPT Image 30 jun 2025, 09_19_16 p.m..png
+┃ ┃ ┣ 📜dancing.gif
+┃ ┃ ┣ 📜footer.png
+┃ ┃ ┣ 📜header.png
+┃ ┃ ┣ 📜img.png
+┃ ┃ ┣ 📜img1.jpg
+┃ ┃ ┣ 📜img10.jpg
+┃ ┃ ┣ 📜img11.jpg
+┃ ┃ ┣ 📜img12.jpg
+┃ ┃ ┣ 📜img13.jpg
+┃ ┃ ┣ 📜img14.jpg
+┃ ┃ ┣ 📜img15.jpg
+┃ ┃ ┣ 📜img16.jpg
+┃ ┃ ┣ 📜img17.jpg
+┃ ┃ ┣ 📜img18.jpg
+┃ ┃ ┣ 📜img19.jpg
+┃ ┃ ┣ 📜img2.jpg
+┃ ┃ ┣ 📜img20.jpg
+┃ ┃ ┣ 📜img21.jpg
+┃ ┃ ┣ 📜img22.jpg
+┃ ┃ ┣ 📜img23.jpg
+┃ ┃ ┣ 📜img3.jpg
+┃ ┃ ┣ 📜img4.jpg
+┃ ┃ ┣ 📜img5.jpg
+┃ ┃ ┣ 📜img6.jpg
+┃ ┃ ┣ 📜img7.jpg
+┃ ┃ ┣ 📜img8.jpg
+┃ ┃ ┣ 📜img9.jpg
+┃ ┃ ┣ 📜Karoline1.jpg
+┃ ┃ ┣ 📜Karoline1.png
+┃ ┃ ┣ 📜Karoline1_upscayl_16x_realesrgan-x4plus-anime.png
+┃ ┃ ┣ 📜Karoline1_upscayl_1x_digital-art-4x.png
+┃ ┃ ┣ 📜Karoline1_upscayl_2x_digital-art-4x.png
+┃ ┃ ┣ 📜Karoline1_upscayl_4x_realesrgan-x4plus.png
+┃ ┃ ┣ 📜Karoline2.jpg
+┃ ┃ ┣ 📜Karoline2.png
+┃ ┃ ┣ 📜Karoline3.jpg
+┃ ┃ ┣ 📜Karoline356.jpg
+┃ ┃ ┣ 📜Karoline4.jpg
+┃ ┃ ┣ 📜Karoline78.jpg
+┃ ┃ ┣ 📜melody.jpg
+┃ ┃ ┣ 📜portada.png
+┃ ┃ ┣ 📜portada.webp
+┃ ┃ ┣ 📜portada1.webp
+┃ ┃ ┣ 📜portada2.webp
+┃ ┃ ┣ 📜rose.jpg
+┃ ┃ ┣ 📜rose.png
+┃ ┃ ┣ 📜sKaroline1.jpg
+┃ ┃ ┣ 📜sKaroline1.png
+┃ ┃ ┗ 📜u-Karoline1.jpg
+┃ ┣ 📂js
+┃ ┃ ┣ 📜roses.js
+┃ ┃ ┗ 📜script.js
+┃ ┣ 📂sounds
+┃ ┃ ┗ 📜beauty-and-the-beast.mp3
+┃ ┗ 📂svg
+┃ ┃ ┣ 📜chip-happy.svg
+┃ ┃ ┣ 📜chip-sad.svg
+┃ ┃ ┣ 📜crown.svg
+┃ ┃ ┣ 📜marco-bottom.svg
+┃ ┃ ┗ 📜marco-top.svg
+┣ 📜admin.html
+┣ 📜index.html
+┗ 📜README.md
 ```
 
 ## Instalación y uso
@@ -127,10 +107,8 @@ Este proyecto es una invitación web elegante y mágica, diseñada para ofrecer 
 ## Créditos
 
 - Inspiración visual: "La Bella y la Bestia"
-- Desarrollo: Coderlaraman
+- Desarrollo: Coderlaraman 2025
 
 ---
 
-¡Gracias por ser parte de esta celebración mágica!
-
-# invitation-15
+¡Gracias!

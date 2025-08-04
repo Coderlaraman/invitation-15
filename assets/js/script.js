@@ -115,6 +115,7 @@ let currentSlide = 0;
 const totalSlides = 4;
 let carouselInterval;
 let restartTimeout;
+let isTransitioning = false; // Para evitar clics rápidos durante la transición
 
 // Configuración de respuestas de personajes
 const characterResponses = {
@@ -135,6 +136,7 @@ const characterResponses = {
 // ========== FUNCIONES DEL CARRUSEL ==========
 
 function updateCarousel() {
+  isTransitioning = true;
   const translateX = -currentSlide * 25; // 25% por cada slide
   carouselTrack.style.transform = `translateX(${translateX}%)`;
 
@@ -143,21 +145,32 @@ function updateCarousel() {
   allIndicators.forEach((indicator, index) => {
     indicator.classList.toggle("active", index === currentSlide);
   });
+
+  // Desbloquear después de la transición (600ms de la CSS)
+  setTimeout(() => {
+    isTransitioning = false;
+  }, 600);
 }
 
 function nextSlide() {
+  if (isTransitioning) return false; // Bloquear si hay transición
   currentSlide = (currentSlide + 1) % totalSlides;
   updateCarousel();
+  return true;
 }
 
 function prevSlide() {
+  if (isTransitioning) return false; // Bloquear si hay transición
   currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
   updateCarousel();
+  return true;
 }
 
 function goToSlide(slideIndex) {
+  if (isTransitioning) return false; // Bloquear si hay transición
   currentSlide = slideIndex;
   updateCarousel();
+  return true;
 }
 
 function startCarouselAutoplay() {
@@ -179,22 +192,25 @@ function initializeCarousel() {
     restartTimeout = setTimeout(startCarouselAutoplay, 8000);
   }
 
-  nextBtn.addEventListener("click", () => {
-    nextSlide();
-    restartAutoplayWithDelay();
+    nextBtn.addEventListener("click", () => {
+    if (nextSlide()) {
+      restartAutoplayWithDelay();
+    }
   });
 
-  prevBtn.addEventListener("click", () => {
-    prevSlide();
-    restartAutoplayWithDelay();
+    prevBtn.addEventListener("click", () => {
+    if (prevSlide()) {
+      restartAutoplayWithDelay();
+    }
   });
 
   // Event listeners para indicadores
   const allIndicators = indicators.querySelectorAll(".indicator");
   allIndicators.forEach((indicator, index) => {
     indicator.addEventListener("click", () => {
-      goToSlide(index);
-      restartAutoplayWithDelay();
+      if (goToSlide(index)) {
+        restartAutoplayWithDelay();
+      }
     });
   });
 
