@@ -335,6 +335,18 @@
     </style>
   </head>
   <body>
+    <script>
+      (function () {
+        var password = "Checo2025*"; // Puedes cambiar esta contraseña
+        var enteredPassword = prompt("Por favor, ingresa la contraseña para acceder:", "");
+
+        if (enteredPassword !== password) {
+          alert("Contraseña incorrecta. Serás redirigido.");
+          // Redirige a la página principal o a una página de error
+          window.location.href = "index.html";
+        }
+      })();
+    </script>
     <!-- Animación de rosas flotantes (opcional) -->
     <div id="falling-roses-container"></div>
 
@@ -385,7 +397,7 @@
           const token = btoa(guestName + secretKey);
 
           // URL base dinámica y robusta
-          const baseUrl = window.location.href.replace(/admin(\.html)?$/, "");
+          const baseUrl = window.location.href.replace(/admin(\.html)?$/, "index.html");
           const encodedName = encodeURIComponent(guestName);
           const encodedToken = encodeURIComponent(token);
           const personalizedLink = `${baseUrl}?name=${encodedName}&token=${encodedToken}`;

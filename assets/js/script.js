@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const token = urlParams.get('token');
     const secretKey = 'K4r0l1n3-Z4m4r4-2025'; // La misma clave secreta que en admin.html
 
-    let displayName = "Invitado de Honor"; // Nombre por defecto
+    let displayName = "No has sido invitado aún! 🙁"; // Nombre por defecto
 
     if (guestName && token) {
         try {
